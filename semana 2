@@ -1,0 +1,31 @@
+import random
+def forca_frutas():
+    lista = ['uva', 'maca', 'laranja', 'abacaxi', 'kiwi', 'pessego', 'tomate', 'melancia', 'mamao', 'pitaya', 'jaca',
+             'tangerina', 'abacate', 'acai', 'acerola', 'amora']
+    fruta = random.choice(lista)
+    vidas = 5
+    letras_acertadas = set()
+    letras_erradas = set()
+
+    while vidas > 0:
+        palavra_formatada = ''.join([letra if letra in letras_acertadas else '_' for letra in fruta])
+        print(f'Palavra: {palavra_formatada}')
+        letra_usuario = input('Insira uma letra para adivinhar: ').lower()
+        if letra_usuario in letras_acertadas or letra_usuario in letras_erradas:
+            print('Você já usou essa letra. Tente outra.')
+        if letra_usuario in fruta:
+            letras_acertadas.add(letra_usuario)
+            print(f'Boa! A letra "{letra_usuario}" está na palavra.')
+        else:
+            letras_erradas.add(letra_usuario)
+            vidas =vidas - 1
+            print(f'Que pena! A letra "{letra_usuario}" não está na palavra. Você tem {vidas} vidas restantes.')
+
+        if set(fruta) == letras_acertadas:
+            print(f'Parabéns! Você adivinhou a fruta "{fruta}".')
+            break
+    else:
+        print(f'Você perdeu! A palavra era "{fruta}".')
+
+
+forca_frutas()
